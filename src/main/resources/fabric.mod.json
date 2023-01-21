@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "zenith",
   "version": "${version}",
-
   "name": "Zenith",
   "description": "Unofficial fabric port of Apotheosis",
   "authors": [
@@ -15,10 +14,8 @@
     "sources": "https://github.com/mineblock11/Zenith",
     "issues": "https://github.com/mineblock11/Zenith/issues"
   },
-
   "license": "MIT License",
   "icon": "assets/zenith/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -27,7 +24,7 @@
     "client": [
       "safro.zenith.ZenithClient"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "safro.zenith.ench.compat.EnchREIPlugin",
       "safro.zenith.village.compat.VillageREIPlugin",
       "safro.zenith.garden.compat.GardenREIPlugin",
@@ -43,6 +40,9 @@
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17"
+  },
+  "suggests": {
+    "roughlyenoughitems": "*"
   },
   "accessWidener": "zenith.aw",
   "custom": {
