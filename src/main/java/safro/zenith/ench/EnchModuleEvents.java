@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import safro.zenith.Apoth;
 import safro.zenith.Zenith;
 import safro.zenith.api.json.ApothJsonReloadListener;
-import safro.zenith.ench.anvil.AnvilTile;
 import safro.zenith.ench.enchantments.SpearfishingEnchant;
 import safro.zenith.ench.enchantments.masterwork.KnowledgeEnchant;
 import safro.zenith.ench.enchantments.masterwork.ScavengerEnchant;
@@ -43,7 +42,7 @@ public class EnchModuleEvents {
             }
         });
 
-        LivingEntityEvents.DROPS.register(((target, source, drops) -> {
+        LivingEntityEvents.DROPS_WITH_LEVEL.register((target, source, drops, lootingLevel, recentlyHit) -> {
             if (source.getEntity() instanceof Player player) {
                 if (Zenith.enableEnch) {
                     ScavengerEnchant.drops(player, target, source);
@@ -52,7 +51,7 @@ public class EnchModuleEvents {
                 }
             }
             return false;
-        }));
+        });
 
         LivingEntityEvents.LOOTING_LEVEL.register(((src, target, currentLevel, recentlyHit) -> {
             if (src != null && src.getDirectEntity() instanceof ThrownTrident trident) {
@@ -96,7 +95,6 @@ public class EnchModuleEvents {
         if (player.containerMenu instanceof AnvilMenu) {
             AnvilMenu r = (AnvilMenu) player.containerMenu;
             BlockEntity te = r.access.evaluate(Level::getBlockEntity).orElse(null);
-            if (te instanceof AnvilTile) return prev / (((AnvilTile) te).getEnchantments().getInt(Enchantments.UNBREAKING) + 1);
         }
         return prev;
     }
